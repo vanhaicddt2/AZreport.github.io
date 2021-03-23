@@ -187,23 +187,6 @@ const actions = {
     }
 }
 
-// document.addEventListener('DOMContentLoaded',function() { {
-//     var $j = jQuery.noConflict();
-//     $j(function() {
-//         $j(".datepicker").datepicker({
-//             dateFormat: 'dd-MM-yy',
-//         })
-        
-//     }); 
-
-// }});
-
-var dateElement = $(".datepicker").datepicker();
-dateElement.change(function(selected){
-   console.log(ok)
-   $j(this).datepicker('hide');
-});
-
 export default function reducer(state = init,action,args){
     actions[action] && actions[action](state, ...args)
     return state
