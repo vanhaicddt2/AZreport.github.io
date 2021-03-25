@@ -63,7 +63,7 @@ const actions = {
                 error_code: ""               
             })
             storage.set(sum_lines)  // lưu vào localStorage
-            console.log('check',Object.keys(init.filters))
+            //console.log('check',Object.keys(init.filters))
         }
     },
     destroy({ sum_lines }, index) {

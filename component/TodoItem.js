@@ -12,9 +12,11 @@ function TodoItem( { sum_line, index } ){
     });
     
     var isdebit = (sum_line.vnd === 'debit' || sum_line.vnd === 'Debit' || sum_line.vnd === 'DEBIT') ;
-    var isPaidWi =  sum_line.vnd.slice(0, 7) == 'Paid wi' || sum_line.vnd.slice(0, 7) == 'paid wi' 
+    var isPaidWi = ( sum_line.vnd.slice(0, 7) == 'Paid wi' || sum_line.vnd.slice(0, 7) == 'paid wi' 
                     || sum_line.vnd.slice(0, 7) == 'PAID WI' || sum_line.vnd.slice(sum_line.vnd.length -3 ) === '000' 
-                    || sum_line.vnd === '0' 
+                    || sum_line.vnd === '0' || sum_line.vnd === '' );
+    
+    console.log('isPaid with',isPaidWi);
 
     return html`
     <tr class ="">
@@ -324,21 +326,21 @@ function TodoItem( { sum_line, index } ){
         </td>
 
         <td class="rp__vcb ${ isdebit && 'bg_yellow'}">
-        <input  class="sub_td1 sub_td1-input-xl ${!isPaidWi && 'op-hidden'}" 
-                value="${Number(sum_line.vcb).toLocaleString('en', {useGrouping:true})}" 
-                onblur="dispatch('endEdit_vcb', ${index}, this.value)"
-                onkeyup="event.keyCode === 13 && dispatch('endEdit_vcb', ${index}, this.value)" />
-        <input  class="sub_td2 op-hidden"/>
-        <input  class="sub_td3 op-hidden"/>
+            <input  class="sub_td1 sub_td1-input-xl ${!isPaidWi && 'op-hidden'}" 
+                    value="${Number(sum_line.vcb).toLocaleString()}" 
+                    onblur="dispatch('endEdit_vcb', ${index}, this.value)"
+                    onkeyup="event.keyCode === 13 && dispatch('endEdit_vcb', ${index}, this.value)" />
+            <input  class="sub_td2 op-hidden"/>
+            <input  class="sub_td3 op-hidden"/>
         </td>
 
         <td class="rp__other-vcb ${ isdebit && 'bg_yellow'}">
             <input  class="sub_td1 sub_td1-input-xl ${!isPaidWi && 'op-hidden'}" 
-                    value="${Number(sum_line.vcb_other).toLocaleString('en', {useGrouping:true})}" 
+                    value="${Number(sum_line.vcb_other).toLocaleString()}" 
                     onblur="dispatch('endEdit_other_vcb', ${index}, this.value)"
                     onkeyup="event.keyCode === 13 && dispatch('endEdit_other_vcb', ${index}, this.value)" />
-            <section  class="sub_td2 op-hidden">2.300.000</section>
-            <section  class="sub_td3 op-hidden">2.300.000</section>
+            <input  class="sub_td2 op-hidden"></input>
+            <input  class="sub_td3 op-hidden"></input>
         </td>
 
         <td class="rp__exp-name">
@@ -350,7 +352,7 @@ function TodoItem( { sum_line, index } ){
 
         <td class="rp__exp-price">
             <input  class="sub_td1 sub_td1-input-xl" 
-            value="${Number(sum_line.exp_rate).toLocaleString('en', {useGrouping:true})}" 
+            value="${Number(sum_line.exp_rate).toLocaleString()}" 
             onblur="dispatch('endEdit_exp_rate', ${index}, this.value)"
             onkeyup="event.keyCode === 13 && dispatch('endEdit_exp_rate', ${index}, this.value)" />      
         </td>
