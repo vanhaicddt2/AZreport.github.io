@@ -4,7 +4,8 @@ import { connect } from '../store.js'
 function Footer({ sum_lines }) {
 
     var fitlter_debit = sum_lines.filter(function(sum_line){
-            return sum_line.vnd.slice(sum_line.vnd.length -3 ) == '000' || sum_line.vnd == '0'  || sum_line.vnd == ''// when number
+            return sum_line.vnd.slice(sum_line.vnd.length -3 ) == '000' || sum_line.vnd == '0'  || sum_line.vnd == '' 
+                   || sum_line.vnd.slice(0, 7) == 'Paid wi' || sum_line.vnd.slice(0, 7) == 'paid wi'  || sum_line.vnd.slice(0, 7) == 'PAID WI' // when number
         });
     
     console.log(fitlter_debit)
